@@ -1,6 +1,7 @@
 import requests
-from os import environ, path
+from os import environ, path, mkdir
 from random import randint
+
 class Pexels:
 	# photo_key_filter = {"id", "url", "width", "height", "photographer", "src"}
 	photo_src_filter = {"original", "large", "landscape", "small"}
@@ -14,7 +15,11 @@ class Pexels:
 		raise Exception("Pexels API key not found")
 
 	def __init__(self, endpoint='curated', query=None):
-
+		try:
+			mkdir(Pexels.cache_path)
+		except Exception as e:
+			# print(e, Pexels.cache_path)
+			pass
 		self.__endpoint = endpoint
 		self.query = query
 		self.__page = 1
@@ -47,13 +52,13 @@ class Pexels:
 			if self.__endpoint == "search":
 				with open(path.join(Pexels.cache_path, f'{self.query}_{page}'), 'r', encoding='utf8', errors='ignore') as f:
 					self.__dict__ = eval(f.read())
-			print('loaded')
+			# print('loaded')
 			return True
 		except FileNotFoundError:
 			return False
 
 	def save_state(self):
-		print('save')
+		# print('save')
 		if self.__endpoint == 'curated':
 			with open(path.join(Pexels.cache_path, f'curated_{self.__page}'), 'w', encoding='utf8', errors='ignore') as f:
 				f.write(repr(self.__dict__))
@@ -71,5 +76,5 @@ class Pexels:
 		# photo = { key: photo[key] for key in photo if key in cls.photo_key_filter}
 		photo['src'] = { key: photo['src'][key] for key in photo['src'] if key in cls.photo_src_filter }
 		photo['title'] = title
-		print(photo)
+		# print(photo)
 		return photo

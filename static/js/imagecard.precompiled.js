@@ -9,7 +9,7 @@ templates['imagecard'] = template({"1":function(container,depth0,helpers,partial
     };
 
   return "    <div class=\"card border-0\">\r\n      <img class=\"card-img\" src=\""
-    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"src") : depth0)) != null ? lookupProperty(stack1,"small") : stack1), depth0))
+    + alias2(alias1(((stack1 = (depth0 != null ? lookupProperty(depth0,"src") : depth0)) != null ? lookupProperty(stack1,"large") : stack1), depth0))
     + "\">\r\n      <div class=\"card-img-overlay bottom d-flex justify-content-between p-3\">\r\n        <a href=\""
     + alias2(((helper = (helper = lookupProperty(helpers,"photographer_url") || (depth0 != null ? lookupProperty(depth0,"photographer_url") : depth0)) != null ? helper : alias4),(typeof helper === alias5 ? helper.call(alias3,{"name":"photographer_url","hash":{},"data":data,"loc":{"start":{"line":6,"column":17},"end":{"line":6,"column":37}}}) : helper)))
     + "\" id=\"photographer-name\"><span  class=\"\" style=\"\">"
