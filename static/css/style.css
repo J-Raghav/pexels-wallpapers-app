@@ -1,0 +1,121 @@
+body{
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+/* searchbox styles */
+.search-box .form-control{
+  font-size: 1.5rem;
+}
+.search-box .form-control:focus{
+  box-shadow: -0.2rem 0 0 0.2rem rgba(0,123,255,.25);
+}
+.search-box .form-control:focus + div{
+  box-shadow: 0.2rem 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Navigation and related styles */
+nav{
+  background: #136a8a;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #267871, #136a8a);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #267871, #136a8a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+}
+.nav-at-top{
+  background-color: rgba(255,255,255,0);
+}
+.nav-at-top form{
+  display:none!important;
+}
+.navbar form{
+  margin-block-end: 0;
+}
+
+/* header styles */
+header{
+  height:auto;
+  min-height: 50vh;
+  width: 100%;
+}
+header .form-box{
+  flex-basis: 50%;
+  margin:auto;
+  background-color: rgba(0,0,0,0);
+  border-radius: 0!important;
+  border:0;
+}
+header .form-box >*{
+  width: 100%;
+}
+#main{
+  width: 90%;
+  border-radius: 0.25rem;
+  transform: translateY(-2rem);
+  margin: auto;
+}
+#title{
+  font-family: 'Roboto', sans-serif;
+  color:white;
+  font-size:1.5rem;
+}
+
+/* Image card styles */
+.cardImage .card-img-overlay{
+  height: 80px;
+  color: #fff;
+  opacity: 0;
+  transition: all .2s linear;
+}
+.bottom{
+  top: unset !important;
+  bottom: 0 !important;
+  background: -webkit-gradient(linear,left bottom,left top,from(rgba(0,0,0,0.5)),to(transparent));
+  background: linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 100%);
+  align-items: flex-end;
+}
+
+.cardImage .card:hover .card-img-overlay{
+  opacity: 1;
+}
+#photographer-name{
+  text-transform: capitalize;
+  color:white;
+}
+
+/* Making Images grid */
+[id^='image-wrapper-']{
+  columns: auto 4;
+  column-gap: 0;
+  column-fill: balance;
+  margin: auto;
+}
+
+[id^='image-wrapper-'] .card{
+  width: 96%;
+  margin: auto;
+}
+
+@media (max-width: 1800px) {
+  [id^='image-wrapper-']{
+    column-count: 3
+  }
+}
+
+@media (max-width: 1076px) {
+  [id^='image-wrapper-']{
+    column-count: 2
+  }
+  header .form-box{
+    flex-basis: 90%;
+  }
+}
+
+@media (max-width:576px) {
+  [id^='image-wrapper-']{
+    column-count: 1
+  }
+  nav .navbar-brand{
+    display: block;
+    margin: auto;
+    width:100%;
+    text-align: center;
+  }
+}

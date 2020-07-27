@@ -1,0 +1,6 @@
+__pycache__
+venv
+cached
+node_modules
+setup.bat
+package-lock.json

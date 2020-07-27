@@ -1,0 +1,11 @@
+<div class="cardImage" style="width:100%;margin-bottom:1rem;display:inline-block">
+  {{#with image}}
+    <div class="card border-0">
+      <img class="card-img" src="{{src.small}}">
+      <div class="card-img-overlay bottom d-flex justify-content-between p-3">
+        <a href="{{image.photographer_url}}"><span id="photographer-name" class="" style="">{{photographer}}</span></a>
+        <a class="" data-src="{{src.original}}" >Download</a>
+      </div>
+    </div>
+  {{/with}}
+</div>

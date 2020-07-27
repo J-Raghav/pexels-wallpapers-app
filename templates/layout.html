@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>{{ title }} - Wallpapers</title>
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+		<!-- <link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta&display=swap" rel="stylesheet"> -->
+		<style media="screen">
+/*			body{
+				background-attachment: fixed;
+				background-image: url('{{bg_image_url}}');
+				background-size: cover;
+				background-position: bottom;
+			} */
+			header{
+				background: #136a8a;  /* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #267871, #136a8a);  /* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #267871, #136a8a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+		</style>
+	</head>
+	<body class=''>
+		<nav class="navbar fixed-top nav-at-top text-white justify-content-start">
+			<a onclick="load_home()" class="navbar-brand">Wallpapers</a>
+			<form class="bg-white rounded">
+				<div class="input-group search-box">
+					<input type="search" class="form-control border-0" name="query" value="">
+					<div class="input-group-append">
+						<button type="submit" class="btn" name="button"><i class="fa fa-search"></i></button>
+					</div>
+				</div>
+			</form>
+		</nav>
+		<header class="d-flex text-white justify-content-center align-items-center p-0">
+			<div class="form-box ">
+				<h1 class="mb-3">Photo by Daria Shevtsova The best free stock photos & videos shared by talented creators.</h1>
+				<form class="bg-white rounded" >
+					<div class="input-group search-box">
+						<input type="search" class="form-control border-0" name="query" value="">
+						<div class="input-group-append">
+							<button type="submit" class="btn" name="button"><i class="fa fa-search"></i></button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</header>
+		<div id="main" class="bg-none border p-0">
+			{% block content %}
+			{% endblock %}
+		</div>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.runtime.js"></script>
+		<script src="{{ url_for('static', filename='js/imagecard.precompiled.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+{% macro imageCard(image) -%}
+	<div id="cardImage" style="width:100%;margin-bottom:1rem;display:inline-block">
+		<div class="card border-0">
+			<img class="card-img" src="{{ image['src']['large'] }}">
+			<div class="card-img-overlay bottom d-flex justify-content-between p-3">
+				<span id="photographer-name" class="" style=""><a href="{{ image['photographer_url'] }}">{{ image['photographer'] }}</a></span>
+				<a class="" data-src="{{ image['src']['large'] }}" >Download</a>
+			</div>
+		</div>
+	</div>
+{%- endmacro %}
+{# <!-- <div class="card-img-overlay p-3">
+	<span>Photo provided by <a href="https://www.pexels.com"><span>Pexels</span></a></span>
+	<h3 id="photo-title" class="mb-0" style="">{{ image['title'] }} The Image</h3>
+</div> --> #}
+
+{% macro modal(image) -%}
+
+{%- endmacro %}
