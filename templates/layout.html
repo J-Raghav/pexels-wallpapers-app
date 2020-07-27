@@ -13,16 +13,12 @@
 				background-size: cover;
 				background-position: bottom;
 			} */
-			header{
-				background: #136a8a;  /* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #267871, #136a8a);  /* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #267871, #136a8a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
+
 		</style>
 	</head>
-	<body class=''>
+	<body class='bg-light'>
 		<nav class="navbar fixed-top nav-at-top text-white justify-content-start">
-			<a onclick="load_home()" class="navbar-brand">Wallpapers</a>
+			<a class="navbar-brand">Wallpapers</a>
 			<form class="bg-white rounded">
 				<div class="input-group search-box">
 					<input type="search" class="form-control border-0" name="query" value="">
@@ -32,9 +28,9 @@
 				</div>
 			</form>
 		</nav>
-		<header class="d-flex text-white justify-content-center align-items-center p-0">
+		<header class="d-flex text-white justify-content-center align-items-center py-5">
 			<div class="form-box ">
-				<h1 class="mb-3">Photo by Daria Shevtsova The best free stock photos & videos shared by talented creators.</h1>
+				<h1 class="mb-3">The best free stock photos & videos shared by talented creators</h1>
 				<form class="bg-white rounded" >
 					<div class="input-group search-box">
 						<input type="search" class="form-control border-0" name="query" value="">
@@ -43,15 +39,17 @@
 						</div>
 					</div>
 				</form>
+				<p><small id='suggestions'></small></p>
 			</div>
 		</header>
-		<div id="main" class="bg-none border p-0">
+		<div id="nav-tabs" class="d-flex bg-none border-bottom py-2 justify-content-center">
+			<a href="" id="home" >Home</a>
+			<a href="" id="random" >Random</a>
+		</div>
+		<div id="main" class="p-0">
 			{% block content %}
 			{% endblock %}
 		</div>
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.runtime.js"></script>
 		<script src="{{ url_for('static', filename='js/imagecard.precompiled.js') }}"></script>
 		<script src="{{ url_for('static', filename='js/script.js') }}"></script>

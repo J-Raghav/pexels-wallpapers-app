@@ -29,11 +29,11 @@ class Pexels:
 				return self.__res
 
 		if (refresh) or (not self.load_state(page)):
-			print('requesting')
+			# print('requesting')
 			base_url = f"https://api.pexels.com/v1/{self.__endpoint}/"
 			res =  requests.get(base_url, headers=Pexels.headers, params={'page': page, 'query': self.query, 'per_page': Pexels.per_page})
-			print(res.__dict__, res.encoding)
-			self.__res = res.json()
+			# print(res.__dict__, res.encoding)
+			self.__res = { **res.json(), 'photos': [ self.modify(image) for image in res.json()['photos']]}
 			self.__page = page
 			self.save_state()
 
@@ -66,9 +66,10 @@ class Pexels:
 	# 	return self.__res['photos'][randint(0,Pexels.per_page-1)]
 
 	@classmethod
-	def filter(cls, photo):
+	def modify(cls, photo):
 		title = ' '.join(photo['url'].split('/')[-2].split('-')[:-1])
 		# photo = { key: photo[key] for key in photo if key in cls.photo_key_filter}
 		photo['src'] = { key: photo['src'][key] for key in photo['src'] if key in cls.photo_src_filter }
 		photo['title'] = title
+		print(photo)
 		return photo
