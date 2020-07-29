@@ -1,29 +1,37 @@
-async function loadImages(url, clear=false) {
+async function loadImages(url, clear=false, cleanup=()=>{}) {
+  if (clear){
+    document.getElementById(`image-wrapper`).innerHTML = '';
+  }
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
+    // debugger;
     if (this.readyState == 4 && this.status == 200) {
-
-      if (clear){
-        document.getElementById(`image-wrapper`).innerHTML = '';
-      }
-
+      // Create new wrapper for next batch of images
       let new_image_wrapper = document.createElement('div');
       new_image_wrapper.setAttribute('id', `image-wrapper-${page}`);
+
+      // Inserting it to DOM
       document.getElementById('image-wrapper').appendChild(new_image_wrapper);
 
+      // Filling new wrapper with response images
       for (let image of JSON.parse(this.response).photos){
         document.getElementById(`image-wrapper-${page}`).innerHTML += Handlebars.templates.imagecard({image});
       }
 
+      // Unblock loading new images on scrolling by setting loading to false when all images are loaded
       let last_image = document.querySelector(`#image-wrapper-${page} .cardImage:last-child img`);
-      last_image.onload = function(){
-        document.querySelectorAll('.download-link').forEach(function(item){
-          let url = item.dataset.src;
-          let filename = item.dataset.title;
-          item.onclick = ()=>{download_image(url, filename, item);}
-        });
-        loading = false;
+      if(last_image){
+        last_image.onload = function(){
+          document.querySelectorAll('.download-link').forEach(function(item){
+            let url = item.dataset.src;
+            let filename = item.dataset.title;
+            item.onclick = ()=>{download_image(url, filename, item);}
+          });
+          loading = false;
+        }
       }
+      // Calls callback after finishing XHR
+      cleanup()
     }
   };
   xhttp.open("GET", url, true);
@@ -48,15 +56,32 @@ function download_image(url, filename, tag){
 function search() {
   event.preventDefault();
   search_query =  current_featured || this.firstElementChild.firstElementChild.value;
+
+  // Do nothing in case of empty search query
   if (!search_query){
-    load_home()
+    return
   }
-  loadImages(`${base_url}search/${search_query}?page=1`, clear=true);
-  let content = `Search results for <span style="color:#17a2b8;font-weight:bold;">${search_query}</span>`
-  document.getElementById("title").innerHTML = content;
+
+  // Operations to be performed after XHR
+  let callback = function(){
+    let content;
+    if(document.getElementById('image-wrapper-1').childElementCount === 0){
+      page--;
+      content = `Sorry we cound't find any results for <span class="text-info" style="font-weight:bold;">${search_query}</span>`
+    }
+    else{
+      content = `Search results for <span style="color:#17a2b8;font-weight:bold;">${search_query}</span>`
+    }
+    document.getElementById("title").innerHTML = content;
+  }
+
+  // Load images to DOM
+  loadImages(`${base_url}search/${search_query}?page=1`, clear=true, callback);
   page = 1;
   current_featured = '';
-  this.firstElementChild.firstElementChild.value = '';
+  if(this.firstElementChild){
+     this.firstElementChild.firstElementChild.value = '';
+  }
 }
 
 function addActiveClass(ele){

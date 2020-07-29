@@ -94,8 +94,8 @@ header input[name='query']{
 .bottom{
   top: unset !important;
   bottom: 0 !important;
-  background: -webkit-gradient(linear,left bottom,left top,from(rgba(0,0,0,0.3)),to(transparent));
-  background: linear-gradient(to top,rgba(0,0,0,0.3) 0%,transparent 100%);
+  background: -webkit-gradient(linear,left bottom,left top,from(rgba(0,0,0,0.8)),to(transparent));
+  background: linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 100%);
   align-items: flex-end;
 }
 
@@ -144,6 +144,9 @@ header input[name='query']{
 @media (max-width:576px) {
   [id^='image-wrapper-']{
     column-count: 1;
+  }
+  .cardImage .card-img-overlay{
+    opacity: 1;
   }
   header .form-box{
     flex-basis: 90%;
